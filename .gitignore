@@ -6,7 +6,7 @@
 !plugins/
 !plugins/*
 !.gitignore
-*.el
+!*.el
 
 # Ignore system-generated files and images #
 .DS_Store
