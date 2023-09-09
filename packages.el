@@ -54,5 +54,7 @@
 (package! org-super-agenda)
 (package! org-roam)
 (package! org-roam-ui)
+(package! org-journal :disable t)
 (package! org-transclusion)
+(package! ox-hugo)
 (package! quarto-mode)

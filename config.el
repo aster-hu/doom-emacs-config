@@ -3,7 +3,6 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
-
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
 ;; (setq user-full-name "John Doe"
@@ -21,8 +20,15 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-(setq doom-font (font-spec :family "Hack" :size 19 :weight 'semi-light)
-     doom-variable-pitch-font (font-spec :family "Hack" :size 20))
+
+(setq doom-font (font-spec :family "Hack" :size 20 :weight 'semi-light)
+     doom-variable-pitch-font (font-spec :family "DejaVu Sans Mono" :size 20 :weight 'normal :width 'normal))
+
+;; ;; ;;Chinese Font
+(dolist (charset '(kana han symbol cjk-misc bopomofo))
+(set-fontset-font (frame-parameter nil 'font)
+charset
+(font-spec :family "Sarasa Term SC Nerd")))
 
 ;; Set line spacing globally
 (setq-default line-spacing 10)
@@ -35,20 +41,24 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-vibrant)
+;; (setq doom-theme 'doom-vibrant)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
+(setq display-line-numbers-type 'relative)
+(setq org-roam-ui-mode nil)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 ;; (setq org-directory "~/org/")
-(setq
-      org-directory "~/Library/CloudStorage/Dropbox/Code/000_Org-mode"
+(setq org-directory "~/Library/CloudStorage/Dropbox/Code/000_Org-mode"
       org-agenda-files '("~/Library/CloudStorage/Dropbox/Code/000_Org-mode/gtd.org")
       )
 
+;; (setq org-agenda-files "gtd.org")
+
+;; (setq org-agenda-files (list "gtd.org"
+;; 			                        "journal.org"))
 
 (setq projectile-project-search-path '("~/Library/CloudStorage/Dropbox/Code/"))
 
@@ -96,24 +106,38 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  STYLE
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Alternative highlight TODO keywords style for both dark and light themes
+
 (setq org-todo-keyword-faces
       (quote (;; 
-	      ("NEXT" :foreground "#d66a6a" :weight bold)
+	      ("NEXT" :foreground "#E8A0BF" :weight bold)
         ("GOAL" :foreground "#2aa198" :weight bold)
-              ("LATER" :foreground "#5c778d" :weight bold)
-              ("WAIT" :foreground "#948f85" :weight bold)
-              ("DONE" :foreground "#859900" :weight bold)
-              ("ACHIEVE" :foreground "#859900" :weight bold)    
-              ("MISS" :foreground "#c29747" :weight bold)
-              ("CANCEL" :foreground "#948f85" :weight bold))))
+              ("LATER" :foreground "#BA90C6" :weight bold)
+              ("WAIT" :foreground "#76b1d1" :weight bold)
+              ("DONE" :foreground "#97dc97" :weight bold)
+              ("ACHIEVE" :foreground "#97dc97" :weight bold)    
+              ("MISS" :foreground "#ffe599" :weight bold)
+              ("CANCEL" :foreground "#7C9D96" :weight bold)
+              )))
+
+;; ;; Alternative highlight TODO keywords style for both dark and light themes
+;; (setq org-todo-keyword-faces
+;;       (quote (;; 
+;; 	      ("NEXT" :foreground "#d66a6a" :weight bold)
+;;         ("GOAL" :foreground "#2aa198" :weight bold)
+;;               ("LATER" :foreground "#5c778d" :weight bold)
+;;               ("WAIT" :foreground "#948f85" :weight bold)
+;;               ("DONE" :foreground "#859900" :weight bold)
+;;               ("ACHIEVE" :foreground "#859900" :weight bold)    
+;;               ("MISS" :foreground "#c29747" :weight bold)
+;;               ("CANCEL" :foreground "#948f85" :weight bold))))
 
 ;; Define bullets style
 (use-package org-bullets
   :after org
   :hook (org-mode . org-bullets-mode)
   :custom
-  (org-bullets-bullet-list '("◉" "☷" "○" "◆" "▲" "▶")))
+  ;; (org-bullets-bullet-list '("◉" "☷" "○" "◆" "▲" "▶")))
+  (org-bullets-bullet-list '("✦" "◉" "⁖" "◆" "▲" "▶")))
 
 ;; Define ellipsis
 ;; (setq org-ellipsis " ⏷ ")
@@ -127,6 +151,7 @@
   (setq org-fancy-priorities-list '("⬆" "⬌" "⬇" "☕"))
   (add-hook 'org-mode-hook 'org-fancy-priorities-mode))
 
+(map! "C-u C-u TAB" #'org-set-startup-visibility)
 
 ;; Strikethrough the DONE items and set fonts
 ;;(setq org-fontify-done-headline t)
@@ -139,6 +164,66 @@
 ;; charset
 ;; (font-spec :family "WenQuanYi Micro Hei Mono" :size 24)))
 
+
+;; when marking a todo as done, at the time
+;; log into drawers right underneath the heading
+(setq org-log-done 'time  
+      org-log-into-drawer t)
+
+;; Restore original tab behaviour to prevent accident space input
+;; https://www.reddit.com/r/DoomEmacs/comments/l0bkx6/restore_default_tab_indentation_behaviour/
+(setq-default tab-always-indent t)
+
+;; (use-package! smartparens
+;;   :config
+;;   (smartparens-global-mode t)
+;;   (add-to-list 'sp-pair-list '("~" . "~"))
+;;   )
+
+;; (setq sp-pair-list '(("\\\\(" . "\\\\)") ("\\\"" . "\\\"") ("\\(" . "\\)") ("\\{" . "\\}") ("`" . "`") ("{" . "}") ("[" . "]") ("(" . ")") ("'" . "'") ("\"" . "\"")))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  CAPTURE TEMPLATE KEYS BINDING
+;;  GOAL SETTING REVIEW
+;;  WEEKLY REVIEW AND MORE
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(after! org
+  (define-key global-map (kbd "C-c c") 'org-capture))
+
+ (setq org-capture-templates
+       '(("c" "Capture" entry
+	  (file "capture.org")
+          "* %?\n"
+          :empty-lines-after 1)
+          ;; ("d" "Daily" entry
+          ;;                 (file+olp+datetree "journal.org")
+          ;;                 "**** [ ] %U %?" :prepend t :kill-buffer t)
+	 ("g" "Goals") 
+	 ("ge" "Epic goals" entry (file+headline "goal.org" 
+						 "Epic goals") (file "templates/tpl-goal.org") :empty-lines-after 1) 
+	 ("gl" "Long term goal (2-5 years from now)" entry (file+headline "goal.org" 
+									  "Long term goals") (file "templates/tpl-goal.org") :empty-lines-after 1) 
+	 ("gm" "Medium term goal (6 months up to 2 years)" entry (file+headline "goal.org" 
+										"Medium term goals") (file "templates/tpl-goal.org") :empty-lines-after 1) 
+	 ("gs" "Short term goals (next 6 months)" entry (file+headline "goal.org" 
+								       "Short term goals") (file "templates/tpl-goal.org") :empty-lines-after 1)
+	 ("r" "Review") 
+	 ("rw" "Weekly review" entry 
+          (file buffer-name)
+          (file "templates/tpl-w-review.org")) 
+	 ("rm" "Monthly review" entry 
+          (file buffer-name)
+          (file "templates/tpl-m-review.org"))
+	 ("rq" "Quarterly review" entry 
+          (file buffer-name)
+          (file "templates/tpl-q-review.org")) 
+	 ("ra" "Annual review" entry 
+          (file buffer-name)
+          (file "templates/tpl-a-review.org"))            
+	 ))
+
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;  ORG-AGENDA
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -150,23 +235,21 @@
 
 
 (use-package! org-super-agenda
-  :commands org-super-agenda-mode)
-
-(after! org-agenda
-  (let ((inhibit-message t))
-    (org-super-agenda-mode)))
+  :commands org-super-agenda-mode
+      )
 
 ;; (use-package! org-super-agenda
 ;; :after org-agenda
 ;; :init
 ;; (setq org-super-agenda-mode t)
 ;; :config
-(setq org-agenda-skip-deadline-if-done t
-      org-agenda-skip-scheduled-if-done t
+(setq org-agenda-skip-deadline-if-done nil
+      org-agenda-skip-scheduled-if-done nil
       org-agenda-include-deadlines t
       org-agenda-skip-additional-timestamps-same-entry t
       org-agenda-start-with-log-mode t
-      org-agenda-format-date "%F %a"
+      org-agenda-start-day nil ; start from today
+      org-agenda-format-date "%F %A"
       org-agenda-remove-tags nil ;; don't hide all tags
       org-agenda-dim-blocked-tasks 'invisible ;; Make blocked tasks invisible
       org-agenda-current-time-string "ᐊ┈┈┈┈┈┈┈┈┈┈┈ Now"
@@ -251,6 +334,10 @@
 ;; Open org-agenda at startup
 ;; (add-hook 'emacs-startup-hook (lambda () (org-agenda nil "z")))
 
+(after! org-agenda
+  (let ((inhibit-message t))
+    (org-super-agenda-mode)))
+    
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 (setq initial-buffer-choice (concat org-directory "/gtd.org"))  
 
@@ -288,38 +375,41 @@
   :ensure t
   :custom
   (org-roam-directory (concat org-directory "/roam"))
-  (org-roam-dailies-directory "journals/")
+  (org-roam-dailies-directory "journal/")
   (org-roam-completion-everywhere t)
+  ;; (org-roam-capture-templates
+  ;;   '(("d" "default" plain "%?"
+  ;; :if-new (file+head "%<%y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+roam_alias:\n#+filetags: \n\n")
+  ;; :unnarrowed t))) 
   (org-roam-dailies-capture-templates
-    ;; '(
-    ;;   ("d" "default" entry "* %<%H:%M>\n  %?"
-    ;;    :if-new (file+head "%<%Y-%m-%d %a>.org" "#+title: %<%Y-%m-%d %a>\n\n")
-    ;;    :unnarrowed t)
-    ;;   )
-     '(("d" "default" entry
-         "* %?"
-         :target (file+datetree "journal.org" week)))
-      )
-      
+    '(
+      ("d" "default" plain "- %<%H:%M> %?"
+      :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d %a>\n#+category: journal\n\n")
+       :unnarrowed t)
+      ))
+    ;;  '(("d" "default" entry
+    ;;      "* %<%H:%M>\n %?"
+    ;;      :target (file+datetree "journal_2023.org" week))) 
+    ;;      ;; refile to a datetree, source: https://org-roam.discourse.group/t/how-to-put-all-the-org-roam-dailies-in-one-file-with-a-date-tree-structure/1561/4
+    ;;   ) The con is it cannot be loaded in calendar mode
   :bind (("C-c n l" . org-roam-buffer-toggle)
          ("C-c n f" . org-roam-node-find)
          ("C-c n g" . org-roam-ui-mode)
          ("C-c n c" . org-roam-capture)
+         ("C-c n r" . org-roam-refile)
          ("C-c n i" . my-org-roam-node-insert)
-	 ("C-c n t a" . org-roam-tag-add)
-	 ("C-c n t r" . org-roam-ref-add)
+	       ("C-c n t a" . org-roam-tag-add)
+	       ("C-c n t r" . org-roam-ref-add)
          ;; Dailies
-         :map org-roam-dailies-map
-         ("j" . org-roam-dailies-capture-today)
-         ("d" . org-roam-dailies-goto-today)
-         ("y" . org-roam-dailies-goto-yesterday)
-         ("t" . org-roam-dailies-goto-tomorrow)
-         :map org-mode-map
-         ("C-M-i" . completion-at-point))
-         :bind-keymap
-  ("C-c n d" . org-roam-dailies-map)
+         ("C-c n j" . org-roam-dailies-capture-today)
+         ("C-c n d d" . org-roam-dailies-goto-today)
+         ("C-c n d y" . org-roam-dailies-goto-yesterday)
+         ("C-c n d t" . org-roam-dailies-goto-tomorrow)
+        ;;  :map org-mode-map
+         ("C-M-i" . completion-at-point)
+         )
   :config
-  (org-roam-setup)
+  ;; (org-roam-setup)
   (setq org-roam-node-display-template (concat "${title:*}" (propertize "${type:15} ${tags:10}" 'face 'org-tag)))
   (org-roam-db-autosync-mode)
   )
@@ -337,6 +427,7 @@
            ))
 
 
+
 ;; preview link at the mouse 
 (defun my/link-preview ()
   (interactive)
@@ -348,6 +439,49 @@
             (side . bottom)
             (slot . 0)))))
     (org-open-at-point)))
+
+;; ORG-JOURNAL
+
+;; (use-package! org-journal
+;;   :ensure t
+;;   :defer t
+;;   :init
+;;   ;; Change default prefix key; needs to be set before loading org-journal
+;;   (setq org-journal-prefix-key "C-c j "
+;;         org-journal-date-prefix "** "
+;;         org-journal-time-prefix ""
+;;         org-journal-time-format "%R  ")
+;;   :bind (("C-c j j" . org-journal-new-entry))
+;;   :config
+;;   (setq org-journal-dir (concat org-directory "/journal")
+;;         org-journal-file-type 'weekly
+;;         org-journal-file-format "%Y-W%V.org"
+;;         ;; org-journal-file-header "#+TITLE: %B, %Y\n#+category: journal\n\n" ;; Don't use header, it will break the date property
+;;         org-journal-date-format "%Y-%m-%d %A")
+;;         )
+
+;; ;; Kill journal buffer after saving buffer (By @dhruvparamhans)
+;; (defun org-journal-save-entry-and-exit()
+;;   "Simple convenience function.
+;;   Saves the buffer of the current day's entry and kills the window
+;;   Similar to org-capture like behavior"
+;;   (interactive)
+;;   (save-buffer)
+;;   (kill-buffer-and-window))
+;; (define-key org-journal-mode-map (kbd "C-x C-s") 'org-journal-save-entry-and-exit)
+
+  ;; :config
+  ;; (setq org-journal-dir (concat org-directory "/journal")
+	;; org-journal-file-type 'weekly
+	;; org-journal-date-prefix "* "
+	;; org-journal-time-prefix "** "
+	;; org-journal-date-format "%Y-%m-%d %A"
+	;; org-journal-created-property-timestamp-format "%Y%m%d"
+	;; org-journal-file-header "#+TITLE: Week %W, %Y\n#+category: journal\n\n"
+	;; org-journal-file-format "%Y-W%V.org"
+	;; org-journal-carryover-items "TODO=\"NEXT\""
+	;; org-journal-enable-agenda-integration t
+  ;; )
 
 
 ;; Function to show all backlinks
@@ -383,77 +517,37 @@
 
 (setq org-roam-capture-templates
       '(
-        ("m" "main" plain
-         "\n*Metadata*\nArea: %?\nResource: \nLink: \n\n"
-         :if-new (file+head "1-main/${slug}.org"
-                            "#+title: ${title}\n")
+        ("i" "Inbox" plain "* %?"
+        :target (file "inbox.org")
+        :unnarrowed t
+          :empty-lines-after 1)
+        ("m" "Main" plain
+         "\n*Metadata*\n- Link: %?\n- Resource: \n\n"
+         :if-new (file+head "1-main/${slug}.org" "#+title: ${title}\n")
          :immediate-finish t
          :unnarrowed t
          :empty-lines-after 1)
-        ("r" "resource" plain
-        "\n*Metadata*\nArea: %?\nResource: \nLink: \n\n"
+        ("r" "Resource" plain
+        "\n*Metadata*\n- Link: %?\n- Resource: \n\n"
          :if-new
          (file+head "2-resource/${slug}.org" "#+title: ${title}\n")
          :immediate-finish t
          :unnarrowed t
          :empty-lines-after 1)
-        ("a" "article" plain
-        "\n*Metadata*\nArea: %?\nResource: \nLink: \n\n"
+        ("a" "Article" plain
+        "\n*Metadata*\n- Link: %?\n- Resource: \n\n"
          :if-new
          (file+head "3-article/${slug}.org" "#+title: ${title}\n#+filetags: :article:\n")
          :immediate-finish t
          :unnarrowed t
          :empty-lines-after 1)
-         ("e" "review" plain "%?"
+         ("e" "Review" plain "%?"
          :if-new
          (file+head "4-review/${slug}.org" "#+title: ${title}\n#+filetags: :review:\n\n\n")
          :immediate-finish t
          :unnarrowed t
          :empty-lines-after 1)
                ))
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  CAPTURE TEMPLATE KEYS BINDING
-;;  GOAL SETTING REVIEW
-;;  WEEKLY REVIEW AND MORE
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(after! org
-  (define-key global-map (kbd "C-c c") 'org-capture))
-
- (setq org-capture-templates
-       '(("c" "capture" entry
-	  (file "capture.org")
-          "* %?\n"
-          :empty-lines-after 1)
-	 ("t" "Org-todo" entry
-	  (file "gtd.org")
-	  (file "templates/tpl-todo.org")
-	  :empty-lines-after 0)
-	 ("g" "Goals") 
-	 ("ge" "Epic goals" entry (file+headline "goal.org" 
-						 "Epic goals") (file "templates/tpl-goal.org") :empty-lines-after 1) 
-	 ("gl" "Long term goal (2-5 years from now)" entry (file+headline "goal.org" 
-									  "Long term goals") (file "templates/tpl-goal.org") :empty-lines-after 1) 
-	 ("gm" "Medium term goal (6 months up to 2 years)" entry (file+headline "goal.org" 
-										"Medium term goals") (file "templates/tpl-goal.org") :empty-lines-after 1) 
-	 ("gs" "Short term goals (next 6 months)" entry (file+headline "goal.org" 
-								       "Short term goals") (file "templates/tpl-goal.org") :empty-lines-after 1)
-	 ("r" "Review") 
-	 ("rw" "Weekly review" entry 
-          (file buffer-name)
-          (file "templates/tpl-w-review.org")) 
-	 ("rm" "Monthly review" entry 
-          (file buffer-name)
-          (file "templates/tpl-m-review.org"))
-	 ("rq" "Quarterly review" entry 
-          (file buffer-name)
-          (file "templates/tpl-q-review.org")) 
-	 ("ra" "Annual review" entry 
-          (file buffer-name)
-          (file "templates/tpl-a-review.org"))            
-	 ))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -516,3 +610,8 @@
 
 
 (setq org-support-shift-select t)
+
+
+;; Zen mode
+;; Decrease text scale from 2
+(setq +zen-text-scale 1.5)
