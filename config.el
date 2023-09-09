@@ -603,7 +603,7 @@ charset
       "C-<right>"      #'+evil/window-move-right)  
 
 
-(setq org-support-shift-select t)
+;; (setq org-support-shift-select t)
 
 
 ;; Zen mode
