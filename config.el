@@ -608,4 +608,5 @@ charset
 
 ;; Zen mode
 ;; Decrease text scale from 2
-(setq +zen-text-scale 1.5)
+(setq +zen-text-scale 1.2
+      writeroom-extra-line-spacing 10)
