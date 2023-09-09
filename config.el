@@ -28,7 +28,7 @@
 (dolist (charset '(kana han symbol cjk-misc bopomofo))
 (set-fontset-font (frame-parameter nil 'font)
 charset
-(font-spec :family "Sarasa Term SC Nerd")))
+(font-spec :family "Pingfang SC")))
 
 ;; Set line spacing globally
 (setq-default line-spacing 10)
@@ -41,7 +41,7 @@ charset
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-;; (setq doom-theme 'doom-vibrant)
+(setq doom-theme 'doom-vibrant)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -51,14 +51,14 @@ charset
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 ;; (setq org-directory "~/org/")
-(setq org-directory "~/Library/CloudStorage/Dropbox/Code/000_Org-mode"
-      org-agenda-files '("~/Library/CloudStorage/Dropbox/Code/000_Org-mode/gtd.org")
-      )
+(setq org-directory "~/Library/CloudStorage/Dropbox/Code/000_Org-mode")
+      ;; org-agenda-files '("~/Library/CloudStorage/Dropbox/Code/000_Org-mode/gtd.org")
+      ;; )
 
 ;; (setq org-agenda-files "gtd.org")
 
-;; (setq org-agenda-files (list "gtd.org"
-;; 			                        "journal.org"))
+(setq org-agenda-files (list "gtd.org"
+			                        "journal.org"))
 
 (setq projectile-project-search-path '("~/Library/CloudStorage/Dropbox/Code/"))
 
@@ -111,7 +111,7 @@ charset
       (quote (;; 
 	      ("NEXT" :foreground "#E8A0BF" :weight bold)
         ("GOAL" :foreground "#2aa198" :weight bold)
-              ("LATER" :foreground "#BA90C6" :weight bold)
+              ("LATER" :foreground "#B59FDA" :weight bold)
               ("WAIT" :foreground "#76b1d1" :weight bold)
               ("DONE" :foreground "#97dc97" :weight bold)
               ("ACHIEVE" :foreground "#97dc97" :weight bold)    
@@ -132,7 +132,7 @@ charset
 ;;               ("CANCEL" :foreground "#948f85" :weight bold))))
 
 ;; Define bullets style
-(use-package org-bullets
+(use-package! org-bullets
   :after org
   :hook (org-mode . org-bullets-mode)
   :custom
@@ -145,7 +145,7 @@ charset
 (setq org-ellipsis " [+]")
 
 ;; Change priority style via org-fancy-priorities
-(use-package org-fancy-priorities
+(use-package! org-fancy-priorities
   :ensure t
   :config
   (setq org-fancy-priorities-list '("⬆" "⬌" "⬇" "☕"))
@@ -174,24 +174,18 @@ charset
 ;; https://www.reddit.com/r/DoomEmacs/comments/l0bkx6/restore_default_tab_indentation_behaviour/
 (setq-default tab-always-indent t)
 
-;; (use-package! smartparens
-;;   :config
-;;   (smartparens-global-mode t)
-;;   (add-to-list 'sp-pair-list '("~" . "~"))
-;;   )
-
-;; (setq sp-pair-list '(("\\\\(" . "\\\\)") ("\\\"" . "\\\"") ("\\(" . "\\)") ("\\{" . "\\}") ("`" . "`") ("{" . "}") ("[" . "]") ("(" . ")") ("'" . "'") ("\"" . "\"")))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  CAPTURE TEMPLATE KEYS BINDING
 ;;  GOAL SETTING REVIEW
 ;;  WEEKLY REVIEW AND MORE
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(after! org
-  (define-key global-map (kbd "C-c c") 'org-capture))
-
- (setq org-capture-templates
+(use-package! org-capture
+  :ensure t
+  :bind (("C-c c" . org-capture))
+  ;; (define-key global-map (kbd "C-c c") 'org-capture)
+  :config
+  (setq org-capture-templates
        '(("c" "Capture" entry
 	  (file "capture.org")
           "* %?\n"
@@ -221,7 +215,7 @@ charset
 	 ("ra" "Annual review" entry 
           (file buffer-name)
           (file "templates/tpl-a-review.org"))            
-	 ))
+	 )))
 
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -238,11 +232,11 @@ charset
   :commands org-super-agenda-mode
       )
 
-;; (use-package! org-super-agenda
-;; :after org-agenda
-;; :init
-;; (setq org-super-agenda-mode t)
-;; :config
+(use-package! org-super-agenda
+:after org-agenda
+:init
+(setq org-super-agenda-mode t)
+:config
 (setq org-agenda-skip-deadline-if-done nil
       org-agenda-skip-scheduled-if-done nil
       org-agenda-include-deadlines t
@@ -326,8 +320,8 @@ charset
 	;; 	     ((org-agenda-overriding-header "Dormant goal / non-goal"))))
 	;;  ((org-agenda-files (list "goal.org"))))
    ))
-;;    :hook (org-agenda-mode-hook . org-super-agenda-mode)
-      ;; )
+   :hook (org-agenda-mode-hook . org-super-agenda-mode)
+      )
 
 ;; SHOW AGENDA AT STARTUP SCREEN
 
