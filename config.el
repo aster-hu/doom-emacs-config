@@ -607,3 +607,4 @@ charset
 
 ;; Do not move one space left after leaving insert
 (setq evil-move-cursor-back nil)
+
