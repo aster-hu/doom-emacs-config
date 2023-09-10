@@ -136,7 +136,7 @@ charset
   :hook (org-mode . org-bullets-mode)
   :custom
   ;; (org-bullets-bullet-list '("◉" "☷" "○" "◆" "▲" "▶")))
-  (org-bullets-bullet-list '("✿" "✼" "✦" "◆" "▲" "▶")))
+  (org-bullets-bullet-list '("⁖" "✼" "✦" "◆" "▲" "▶")))
 ;; ⁖
 
 ;; Define ellipsis
@@ -394,7 +394,7 @@ charset
          ("C-M-i" . completion-at-point)
          )
   :config
-  (setq org-roam-node-display-template (concat "${type:14} ${title:*}" (propertize "${tags:10}" 'face 'org-tag)))
+  (setq org-roam-node-display-template (concat "${type:25} ${title:80}" (propertize "${tags:20}" 'face 'org-tag)))
   (org-roam-db-autosync-mode)
   )
 
