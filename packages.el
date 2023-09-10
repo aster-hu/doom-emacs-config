@@ -58,3 +58,4 @@
 (package! org-transclusion)
 (package! ox-hugo)
 (package! quarto-mode)
+(package! sis)
