@@ -604,3 +604,6 @@ charset
 ;; Decrease text scale from 2
 (setq +zen-text-scale 1.2
       writeroom-extra-line-spacing 10)
+
+;; Do not move one space left after leaving insert
+(setq evil-move-cursor-back nil)
