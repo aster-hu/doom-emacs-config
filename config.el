@@ -52,10 +52,6 @@ charset
 ;; change `org-directory'. It must be set before org loads!
 ;; (setq org-directory "~/org/")
 (setq org-directory "~/Library/CloudStorage/Dropbox/Code/000_Org-mode")
-      ;; org-agenda-files '("~/Library/CloudStorage/Dropbox/Code/000_Org-mode/gtd.org")
-      ;; )
-
-;; (setq org-agenda-files "gtd.org")
 
 (setq org-agenda-files (list "gtd.org"
 			                        "journal.org"))
@@ -156,15 +152,6 @@ charset
 ;; Strikethrough the DONE items and set fonts
 ;;(setq org-fontify-done-headline t)
 
-;; (set-face-attribute
-;; 'default nil :font "Hack" :height 201)
-;; Chinese Font
-;; (dolist (charset '(kana han symbol cjk-misc bopomofo))
-;; (set-fontset-font (frame-parameter nil 'font)
-;; charset
-;; (font-spec :family "WenQuanYi Micro Hei Mono" :size 24)))
-
-
 ;; when marking a todo as done, at the time
 ;; log into drawers right underneath the heading
 (setq org-log-done 'time  
@@ -183,16 +170,15 @@ charset
 (use-package! org-capture
   :ensure t
   :bind (("C-c c" . org-capture))
-  ;; (define-key global-map (kbd "C-c c") 'org-capture)
   :config
   (setq org-capture-templates
        '(("c" "Capture" entry
 	  (file "capture.org")
           "* %?\n"
           :empty-lines-after 1)
-          ;; ("d" "Daily" entry
-          ;;                 (file+olp+datetree "journal.org")
-          ;;                 "**** [ ] %U %?" :prepend t :kill-buffer t)
+          ("d" "Daily" entry
+                          (file+olp+datetree "journal.org")
+                          "**** [ ] %U %?" :prepend t :kill-buffer t)
 	 ("g" "Goals") 
 	 ("ge" "Epic goals" entry (file+headline "goal.org" 
 						 "Epic goals") (file "templates/tpl-goal.org") :empty-lines-after 1) 
@@ -347,9 +333,9 @@ charset
 ;;   (org-agenda nil "z"))
 ;; (add-hook 'emacs-startup-hook #'emacs-startup-screen)
 
-;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ;;  SET REFILE TARGET LOCATION
-;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;  SET REFILE TARGET LOCATION
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq org-refile-targets '((nil :maxlevel . 9)
                            ("gtd.org" :maxlevel . 9)))
@@ -361,9 +347,9 @@ charset
 
 
 
-;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ;;  ORG-ROAM
-;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;  ORG-ROAM
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package! org-roam
   :ensure t
@@ -372,9 +358,6 @@ charset
   (org-roam-dailies-directory "journal/")
   (org-roam-completion-everywhere t)
   ;; (org-roam-capture-templates
-  ;;   '(("d" "default" plain "%?"
-  ;; :if-new (file+head "%<%y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+roam_alias:\n#+filetags: \n\n")
-  ;; :unnarrowed t))) 
   (org-roam-dailies-capture-templates
     '(
       ("d" "default" plain "- %<%H:%M> %?"
@@ -403,8 +386,7 @@ charset
          ("C-M-i" . completion-at-point)
          )
   :config
-  ;; (org-roam-setup)
-  (setq org-roam-node-display-template (concat "${title:*}" (propertize "${type:15} ${tags:10}" 'face 'org-tag)))
+  (setq org-roam-node-display-template (concat "${type:14} ${title:*}" (propertize "${tags:10}" 'face 'org-tag)))
   (org-roam-db-autosync-mode)
   )
 
@@ -420,6 +402,45 @@ charset
              (error ""))
            ))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  ORG-ROAM CAPTURE TEMPLATES
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+(setq org-roam-capture-templates
+      '(
+        ("i" "Inbox" plain "* %?"
+        :target (file "inbox.org")
+        :unnarrowed t
+          :empty-lines-after 1)
+        ("m" "Main" plain
+         "\n*Metadata*\n- Link: %?\n- Resource: \n\n"
+         :if-new (file+head "1-main/${slug}.org" "#+title: ${title}\n")
+         :immediate-finish t
+         :unnarrowed t
+         :empty-lines-after 1)
+        ("r" "Resource" plain
+        "\n*Metadata*\n- Link: %?\n- Resource: \n\n"
+         :if-new
+         (file+head "2-resource/${slug}.org" "#+title: ${title}\n")
+         :immediate-finish t
+         :unnarrowed t
+         :empty-lines-after 1)
+        ("a" "Article" plain
+        "\n*Metadata*\n- Link: %?\n- Resource: \n\n"
+         :if-new
+         (file+head "3-article/${slug}.org" "#+title: ${title}\n#+filetags: :article:\n")
+         :immediate-finish t
+         :unnarrowed t
+         :empty-lines-after 1)
+         ("e" "Review" plain "%?"
+         :if-new
+         (file+head "4-review/${slug}.org" "#+title: ${title}\n#+filetags: :review:\n\n\n")
+         :immediate-finish t
+         :unnarrowed t
+         :empty-lines-after 1)
+               ))
+
 
 
 ;; preview link at the mouse 
@@ -434,7 +455,37 @@ charset
             (slot . 0)))))
     (org-open-at-point)))
 
+;; Function to show all backlinks
+;; https://emacs-china.org/t/org-roam-v2-backlinks-buffer-headlines/23368/2
+;; https://github.com/czqhurricnae/spacemacs-private/blob/master/layers/hurricane-org/local/org-roam-backlink-collections/org-roam-backlink-collections.el
+;; (add-to-list 'load-path "~/.emacs.d/plugins")
+;; (load "org-roam-backlink-collections.el")
+
+
+;; Define function to exclude files in archive nodes
+;; https://www.reddit.com/r/emacs/comments/veesun/orgroam_is_absolutely_fantastic/
+(defun my-org-roam-node-exclude-archive (node)
+    (and
+   ;; no journal files
+   ;; (not (string-match my-date-regexp (org-roam-node-title node)))
+   ;; not tagged `archive'
+   (not (member "archive" (org-roam-node-tags node)))
+   ;; not in any folder named `archive'
+   (not (string-match-p "archive/" (org-roam-node-file node)))))
+
+;;;;; Define custom `org-roam-node-insert' functions with filters.
+(defun my-org-roam-node-insert nil
+ ;; Refined search for org-roam nodes to exclude elements tagged `archive'
+  (interactive)
+  ;; nb: can add initial search string like "^"
+;;  (org-roam-node-find :other-window nil #'my-org-roam-node-exclude-archive)
+  (org-roam-node-insert #'my-org-roam-node-exclude-archive)
+)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ORG-JOURNAL
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; (use-package! org-journal
 ;;   :ensure t
@@ -478,70 +529,6 @@ charset
   ;; )
 
 
-;; Function to show all backlinks
-;; https://emacs-china.org/t/org-roam-v2-backlinks-buffer-headlines/23368/2
-;; https://github.com/czqhurricnae/spacemacs-private/blob/master/layers/hurricane-org/local/org-roam-backlink-collections/org-roam-backlink-collections.el
-;; (add-to-list 'load-path "~/.emacs.d/plugins")
-;; (load "org-roam-backlink-collections.el")
-
-;; Define function to exclude files in archive nodes
-;; https://www.reddit.com/r/emacs/comments/veesun/orgroam_is_absolutely_fantastic/
-(defun my-org-roam-node-exclude-archive (node)
-    (and
-   ;; no journal files
-   ;; (not (string-match my-date-regexp (org-roam-node-title node)))
-   ;; not tagged `archive'
-   (not (member "archive" (org-roam-node-tags node)))
-   ;; not in any folder named `archive'
-   (not (string-match-p "archive/" (org-roam-node-file node)))))
-
-;;;;; Define custom `org-roam-node-insert' functions with filters.
-(defun my-org-roam-node-insert nil
- ;; Refined search for org-roam nodes to exclude elements tagged `archive'
-  (interactive)
-  ;; nb: can add initial search string like "^"
-;;  (org-roam-node-find :other-window nil #'my-org-roam-node-exclude-archive)
-  (org-roam-node-insert #'my-org-roam-node-exclude-archive)
-)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  ORG-ROAM CAPTURE TEMPLATES
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-(setq org-roam-capture-templates
-      '(
-        ("i" "Inbox" plain "* %?"
-        :target (file "inbox.org")
-        :unnarrowed t
-          :empty-lines-after 1)
-        ("m" "Main" plain
-         "\n*Metadata*\n- Link: %?\n- Resource: \n\n"
-         :if-new (file+head "1-main/${slug}.org" "#+title: ${title}\n")
-         :immediate-finish t
-         :unnarrowed t
-         :empty-lines-after 1)
-        ("r" "Resource" plain
-        "\n*Metadata*\n- Link: %?\n- Resource: \n\n"
-         :if-new
-         (file+head "2-resource/${slug}.org" "#+title: ${title}\n")
-         :immediate-finish t
-         :unnarrowed t
-         :empty-lines-after 1)
-        ("a" "Article" plain
-        "\n*Metadata*\n- Link: %?\n- Resource: \n\n"
-         :if-new
-         (file+head "3-article/${slug}.org" "#+title: ${title}\n#+filetags: :article:\n")
-         :immediate-finish t
-         :unnarrowed t
-         :empty-lines-after 1)
-         ("e" "Review" plain "%?"
-         :if-new
-         (file+head "4-review/${slug}.org" "#+title: ${title}\n#+filetags: :review:\n\n\n")
-         :immediate-finish t
-         :unnarrowed t
-         :empty-lines-after 1)
-               ))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
