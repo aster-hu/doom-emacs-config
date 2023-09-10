@@ -638,3 +638,6 @@ charset
   ;; enable the /inline english/ mode for all buffers
   (sis-global-inline-mode t)
   )
+
+;; turn off auto spacing between Chinese and English
+  (setq pangu-spacing-mode nil)
