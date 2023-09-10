@@ -608,21 +608,3 @@ charset
 
 ;; Do not move one space left after leaving insert
 (setq evil-move-cursor-back nil)
-
-;; Input
-
-;; (use-package! pyim
-;;   :config
-;;   (setq pyim-default-scheme 'rime)
-;;   (setq pyim-page-tooltip 'posframe)
-;;   (global-set-key (kbd "s-j") 'pyim-convert-string-at-point) ; 把光标前的输入转中文
-;;   ;; 智能切换输入
-;;   (setq-default pyim-english-input-switch-functions
-;;    '(pyim-probe-dynamic-english
-;;      pyim-probe-isearch-mode
-;;      pyim-probe-program-mode
-;;      pyim-probe-evil-normal-mode
-;;      pyim-probe-org-structure-template))
-;;   (setq-default pyim-punctuation-half-width-functions
-;;    '(pyim-probe-punctuation-line-beginning
-;;      pyim-probe-punctuation-after-punctuation)))
