@@ -33,6 +33,9 @@ charset
 ;; Set line spacing globally
 (setq-default line-spacing 10)
 
+;; Hide emphasis markers
+(setq org-hide-emphasis-markers t)
+
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
 ;; refresh your font settings. If Emacs still can't find your font, it likely
@@ -161,6 +164,13 @@ charset
 ;; https://www.reddit.com/r/DoomEmacs/comments/l0bkx6/restore_default_tab_indentation_behaviour/
 (setq-default tab-always-indent t)
 
+;; Enable electric pair mode and 
+(electric-pair-mode 1)
+;; Add auto complete for ~tilde~ and {bracket}
+(setq electric-pair-pairs
+      '((?\~ . ?\~)
+        (?\{ . ?\})))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  CAPTURE TEMPLATE KEYS BINDING
 ;;  GOAL SETTING REVIEW
@@ -208,20 +218,11 @@ charset
 ;; ;;  ORG-AGENDA
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(after! org
-  (define-key global-map (kbd "C-c a") 'org-agenda))
-  
-;; (add-hook 'after-init-hook '(lambda () (org-agenda nil "z")))
-
-
-(use-package! org-super-agenda
-  :commands org-super-agenda-mode
-      )
-
 (use-package! org-super-agenda
 :after org-agenda
 :init
 (setq org-super-agenda-mode t)
+:commands org-super-agenda-mode
 :config
 (setq org-agenda-skip-deadline-if-done nil
       org-agenda-skip-scheduled-if-done nil
