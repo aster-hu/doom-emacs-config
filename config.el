@@ -164,6 +164,10 @@ charset
 ;; https://www.reddit.com/r/DoomEmacs/comments/l0bkx6/restore_default_tab_indentation_behaviour/
 (setq-default tab-always-indent t)
 
+;; Set the tags location
+(setq org-tags-column -72)
+      ;; org-agenda-tags-column -102)
+
 ;; Enable electric pair mode and 
 (electric-pair-mode 1)
 ;; Add auto complete for ~tilde~ and {bracket}
@@ -222,7 +226,9 @@ charset
 :after org-agenda
 :init
 (setq org-super-agenda-mode t)
-:commands org-super-agenda-mode
+;; :commands org-super-agenda-mode
+:bind
+("C-c a" . 'org-agenda)
 :config
 (setq org-agenda-skip-deadline-if-done nil
       org-agenda-skip-scheduled-if-done nil
