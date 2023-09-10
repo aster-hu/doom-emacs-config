@@ -136,12 +136,13 @@ charset
   :hook (org-mode . org-bullets-mode)
   :custom
   ;; (org-bullets-bullet-list '("◉" "☷" "○" "◆" "▲" "▶")))
-  (org-bullets-bullet-list '("✦" "◉" "⁖" "◆" "▲" "▶")))
+  (org-bullets-bullet-list '("✿" "✼" "✦" "◆" "▲" "▶")))
+;; ⁖
 
 ;; Define ellipsis
-;; (setq org-ellipsis " ⏷ ")
+(setq org-ellipsis " ⏷")
 ;; (setq org-ellipsis "⤵")
-(setq org-ellipsis " [+]")
+;; (setq org-ellipsis " [+]")
 
 ;; Change priority style via org-fancy-priorities
 (use-package! org-fancy-priorities
