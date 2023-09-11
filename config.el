@@ -637,7 +637,6 @@ charset
   (sis-global-context-mode t)
   ;; enable the /inline english/ mode for all buffers
   (sis-global-inline-mode t)
+  (setq sis-default-cursor-color "#439dea" ;; Set the default cursor color to be consistent with doom emacs
+        sis-other-cursor-color "green")
   )
-
-;; ;; turn off auto spacing between Chinese and English
-;;   (setq pangu-spacing-mode nil)
