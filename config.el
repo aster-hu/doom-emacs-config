@@ -640,3 +640,11 @@ charset
   (setq sis-default-cursor-color "#439dea" ;; Set the default cursor color to be consistent with doom emacs
         sis-other-cursor-color "green")
   )
+
+
+(setq org-link-frame-setup
+  '((vm . vm-visit-folder-other-frame)
+ (vm-imap . vm-visit-imap-folder-other-frame)
+ (gnus . org-gnus-no-new-news)
+ (file . find-file-other-window) ;; Open file link in other window
+ (wl . wl-other-frame)))
