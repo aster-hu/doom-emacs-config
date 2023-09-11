@@ -387,6 +387,7 @@ charset
 	       ("C-c n t r" . org-roam-ref-add)
          ;; Dailies
          ("C-c n j" . org-roam-dailies-capture-today)
+         ("C-c n d c" . org-roam-dailies-goto-date)
          ("C-c n d d" . org-roam-dailies-goto-today)
          ("C-c n d y" . org-roam-dailies-goto-yesterday)
          ("C-c n d t" . org-roam-dailies-goto-tomorrow)
@@ -648,3 +649,24 @@ charset
  (gnus . org-gnus-no-new-news)
  (file . find-file-other-window) ;; Open file link in other window
  (wl . wl-other-frame)))
+
+;; Holidays
+
+(after! calendar
+:config
+(setq calendar-holidays
+    '((holiday-fixed 1 1 "New Year's Day")
+     (holiday-float 2 1 3 "Family Day")
+     (holiday-easter-etc -2 "Good Friday")
+     (holiday-easter-etc 1 "Easter Monday")
+     (holiday-float 5 1 4 "xVictoria Day")
+     (holiday-fixed 7 1 "Canada Day")
+     (holiday-float 8 1 1 "Civic Day")
+     (holiday-float 9 1 1 "Labour Day")
+     (holiday-fixed 9 30 "National Day of Truth and Reconciliation")
+     (holiday-float 10 1 2 "Thanksgiving Day")
+     (holiday-fixed 11 11 "Remembrance Day")
+     (holiday-fixed 12 25 "Christmas Day")
+     (holiday-fixed 12 26 "Boxing Day")))
+     (setq calendar-mark-holidays-flag t)
+     (setq holiday '((t (:foreground "chartreuse")))))

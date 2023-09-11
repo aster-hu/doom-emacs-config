@@ -54,7 +54,7 @@
 (package! org-super-agenda)
 (package! org-roam)
 (package! org-roam-ui)
-;; (package! consult-org-roam) ;; Better view of backlink
+(package! consult-org-roam) ;; Better view of backlink
 (package! org-journal :disable t)
 (package! org-transclusion)
 (package! ox-hugo)
