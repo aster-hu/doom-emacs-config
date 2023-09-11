@@ -639,5 +639,5 @@ charset
   (sis-global-inline-mode t)
   )
 
-;; turn off auto spacing between Chinese and English
-  (setq pangu-spacing-mode nil)
+;; ;; turn off auto spacing between Chinese and English
+;;   (setq pangu-spacing-mode nil)

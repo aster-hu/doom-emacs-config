@@ -59,3 +59,4 @@
 (package! ox-hugo)
 (package! quarto-mode)
 (package! sis)
+(package! pangu-spacing :disable t)
