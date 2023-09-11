@@ -25,10 +25,11 @@
      doom-variable-pitch-font (font-spec :family "DejaVu Sans Mono" :size 20 :weight 'normal :width 'normal))
 
 ;; ;; ;;Chinese Font
+(after! org
 (dolist (charset '(kana han symbol cjk-misc bopomofo))
 (set-fontset-font (frame-parameter nil 'font)
 charset
-(font-spec :family "Pingfang SC")))
+(font-spec :family "Pingfang SC"))))
 
 ;; Set line spacing globally
 (setq-default line-spacing 10)
@@ -56,8 +57,8 @@ charset
 ;; (setq org-directory "~/org/")
 (setq org-directory "~/Library/CloudStorage/Dropbox/Code/000_Org-mode")
 
-(setq org-agenda-files (list "gtd.org"
-			                        "journal.org"))
+;; (setq org-agenda-files (list "gtd.org"
+;; 			                        "journal.org"))
 
 (setq projectile-project-search-path '("~/Library/CloudStorage/Dropbox/Code/"))
 
@@ -223,6 +224,8 @@ charset
 ;; ;;  ORG-AGENDA
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(setq org-agenda-files (list "gtd.org"))
+
 (use-package! org-super-agenda
 :after org
 :init
@@ -332,24 +335,18 @@ charset
 ;;     ;; (org-agenda nil "z")
 ;;     (lambda () (org-agenda nil "z"))
 ;;     ))
+(add-hook 'emacs-startup-hook #'my-init-hook)
+(add-hook 'emacs-startup-hook (lambda () (org-agenda nil "z")))
 
 (defun my-init-hook ()
   (split-window-right)
-  (let ((org-agenda-window-setup 'other-window))
-    ;; (org-agenda nil "z")
-    (lambda () (org-agenda nil "z"))
+  (let ((org-agenda-window-setup 'current-window))
     ))
 
-;; (add-hook 'window-setup-hook #'my-init-hook)
 
-(add-hook 'emacs-startup-hook #'my-init-hook)
+
+
 ;; (add-hook 'window-setup-hook (lambda () (org-agenda nil "z")))
-
-
-;; (add-hook 'emacs-startup-hook #'my-init-hook)
-
-;; Open org-agenda at startup
-;; (add-hook 'emacs-startup-hook (lambda () (org-agenda nil "z")))
 
 ;; (defun emacs-startup-screen ()
 ;;   "Display the weekly org-agenda and all todos."
