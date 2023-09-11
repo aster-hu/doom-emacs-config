@@ -224,7 +224,7 @@ charset
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package! org-super-agenda
-:after org-agenda
+:after org
 :init
 (setq org-super-agenda-mode t)
 ;; :commands org-super-agenda-mode
@@ -319,9 +319,6 @@ charset
 
 ;; SHOW AGENDA AT STARTUP SCREEN
 
-;; Open org-agenda at startup
-;; (add-hook 'emacs-startup-hook (lambda () (org-agenda nil "z")))
-
 (after! org-agenda
   (let ((inhibit-message t))
     (org-super-agenda-mode)))
@@ -329,12 +326,30 @@ charset
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 (setq initial-buffer-choice (concat org-directory "/gtd.org"))  
 
+;; (defun my-init-hook ()
+;;   (split-window-right)
+;;   (let ((org-agenda-window-setup 'other-window))
+;;     ;; (org-agenda nil "z")
+;;     (lambda () (org-agenda nil "z"))
+;;     ))
+
 (defun my-init-hook ()
   (split-window-right)
   (let ((org-agenda-window-setup 'other-window))
-    (org-agenda nil "z")))
+    ;; (org-agenda nil "z")
+    (lambda () (org-agenda nil "z"))
+    ))
+
+;; (add-hook 'window-setup-hook #'my-init-hook)
 
 (add-hook 'emacs-startup-hook #'my-init-hook)
+;; (add-hook 'window-setup-hook (lambda () (org-agenda nil "z")))
+
+
+;; (add-hook 'emacs-startup-hook #'my-init-hook)
+
+;; Open org-agenda at startup
+;; (add-hook 'emacs-startup-hook (lambda () (org-agenda nil "z")))
 
 ;; (defun emacs-startup-screen ()
 ;;   "Display the weekly org-agenda and all todos."
@@ -654,6 +669,7 @@ charset
 
 (after! calendar
 :config
+(setq calendar-mark-holidays-flag t)
 (setq calendar-holidays
     '((holiday-fixed 1 1 "New Year's Day")
      (holiday-float 2 1 3 "Family Day")
@@ -668,5 +684,5 @@ charset
      (holiday-fixed 11 11 "Remembrance Day")
      (holiday-fixed 12 25 "Christmas Day")
      (holiday-fixed 12 26 "Boxing Day")))
-     (setq calendar-mark-holidays-flag t)
-     (setq holiday '((t (:foreground "chartreuse")))))
+     )
+
