@@ -60,4 +60,4 @@
 (package! ox-hugo)
 (package! quarto-mode)
 (package! sis)
-(package! pangu-spacing :disable t) ; Turn off auto spacing between Chinese and English
+;; (package! pangu-spacing :disable t) ; Turn off auto spacing between Chinese and English
