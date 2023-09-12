@@ -407,7 +407,7 @@ charset
          ("C-M-i" . completion-at-point)
          )
   :config
-  (setq org-roam-node-display-template (concat "${type:25} ${title:80}" (propertize "${tags:20}" 'face 'org-tag)))
+  (setq org-roam-node-display-template (concat "${type:13}" (propertize "${tags:30}" 'face 'org-tag) "${title:100}"))
   (org-roam-db-autosync-mode)
   )
 
@@ -436,27 +436,27 @@ charset
           :empty-lines-after 1)
         ("m" "Main" plain
          "\n*Metadata*\n- Link: %?\n- Resource: \n\n"
-         :if-new (file+head "1-main/${slug}.org" "#+title: ${title}\n")
+         :if-new (file+head "1-main/${slug}.org" "#+title: ${title}\n#+filetags: :1-main:\n")
          :immediate-finish t
          :unnarrowed t
          :empty-lines-after 1)
-        ("r" "Resource" plain
+        ("r" "Reference" plain
         "\n*Metadata*\n- Link: %?\n- Resource: \n\n"
          :if-new
-         (file+head "2-resource/${slug}.org" "#+title: ${title}\n")
+         (file+head "2-resource/${slug}.org" "#+title: ${title}\n#+filetags: :2-ref:\n")
          :immediate-finish t
          :unnarrowed t
          :empty-lines-after 1)
         ("a" "Article" plain
         "\n*Metadata*\n- Link: %?\n- Resource: \n\n"
          :if-new
-         (file+head "3-article/${slug}.org" "#+title: ${title}\n#+filetags: :article:\n")
+         (file+head "3-article/${slug}.org" "#+title: ${title}\n#+filetags: :3-article:\n")
          :immediate-finish t
          :unnarrowed t
          :empty-lines-after 1)
          ("e" "Review" plain "%?"
          :if-new
-         (file+head "4-review/${slug}.org" "#+title: ${title}\n#+filetags: :review:\n\n\n")
+         (file+head "4-review/${slug}.org" "#+title: ${title}\n#+filetags: :4-review:\n\n\n")
          :immediate-finish t
          :unnarrowed t
          :empty-lines-after 1)
