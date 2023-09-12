@@ -686,6 +686,3 @@ charset
 
 ;; Set jk as the escape key
 (setq-default evil-escape-key-sequence "jk")
-
-;; Change the tab size
- (setq default-tab-width 10)
