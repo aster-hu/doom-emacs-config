@@ -60,4 +60,5 @@
 (package! ox-hugo)
 (package! quarto-mode)
 (package! sis)
+(package! evil-escape)
 ;; (package! pangu-spacing :disable t) ; Turn off auto spacing between Chinese and English

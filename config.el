@@ -683,3 +683,6 @@ charset
      (holiday-fixed 12 26 "Boxing Day")))
      )
 
+
+;; Set jk as the escape key
+(setq-default evil-escape-key-sequence "jk")
