@@ -371,11 +371,9 @@ charset
 ;;;;  ORG-ROAM
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package! org-roam
+(after! org-roam
   :ensure t
   :custom
-  (org-roam-directory (concat org-directory "/roam"))
-  (org-roam-dailies-directory "journal/")
   (org-roam-completion-everywhere t)
   ;; (org-roam-capture-templates
   (org-roam-dailies-capture-templates
@@ -407,6 +405,8 @@ charset
          ("C-M-i" . completion-at-point)
          )
   :config
+  (setq org-roam-directory (concat org-directory "/roam"))
+  (setq org-roam-dailies-directory "journal/")
   (setq org-roam-node-display-template (concat "${type:13}" (propertize "${tags:30}" 'face 'org-tag) "${title:100}"))
   (org-roam-db-autosync-mode)
   )

@@ -63,4 +63,5 @@
 (package! evil-escape)
 (package! tabspaces)
 (package! tab-bar-echo-area :disable t)
+(package! ess-view-data :disable t)
 ;; (package! pangu-spacing :disable t) ; Turn off auto spacing between Chinese and English
