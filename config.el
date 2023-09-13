@@ -701,4 +701,9 @@ charset
   ;; sessions
   (tabspaces-session t)
   (tabspaces-session-auto-restore t))
-  
+
+
+;; Quarto mode
+(use-package! quarto-mode
+  :mode (("\\.Rmd" . poly-quarto-mode))
+  )
