@@ -686,3 +686,9 @@ charset
 
 ;; Set jk as the escape key
 (setq-default evil-escape-key-sequence "jk")
+
+;; Tab bar in echo area at the bottom
+(use-package! tab-bar-echo-area
+  :ensure
+  :config
+  (tab-bar-echo-area-mode 1))
