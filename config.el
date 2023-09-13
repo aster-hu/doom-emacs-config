@@ -62,6 +62,9 @@ charset
 
 (setq projectile-project-search-path '("~/Library/CloudStorage/Dropbox/Code/"))
 
+(use-package! org
+  :defer t)
+
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
 ;;
@@ -371,8 +374,9 @@ charset
 ;;;;  ORG-ROAM
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(after! org-roam
-  :ensure t
+(use-package! org-roam
+  ;; :ensure t
+  :defer t
   :custom
   (org-roam-completion-everywhere t)
   ;; (org-roam-capture-templates
@@ -687,20 +691,20 @@ charset
 ;; Set jk as the escape key
 (setq-default evil-escape-key-sequence "jk")
 
-(use-package! tabspaces
-  ;; use this next line only if you also use straight, otherwise ignore it. 
-  ;; :straight (:type git :host github :repo "mclear-tools/tabspaces")
-  :hook (after-init . tabspaces-mode) ;; use this only if you want the minor-mode loaded at startup. 
-  :commands (tabspaces-switch-or-create-workspace
-             tabspaces-open-or-create-project-and-workspace)
-  :custom
-  (tabspaces-use-filtered-buffers-as-default t)
-  (tabspaces-default-tab "Default")
-  (tabspaces-remove-to-default t)
-  (tabspaces-include-buffers '("*scratch*"))
-  ;; sessions
-  (tabspaces-session t)
-  (tabspaces-session-auto-restore t))
+;; (use-package! tabspaces
+;;   ;; use this next line only if you also use straight, otherwise ignore it. 
+;;   ;; :straight (:type git :host github :repo "mclear-tools/tabspaces")
+;;   :hook (after-init . tabspaces-mode) ;; use this only if you want the minor-mode loaded at startup. 
+;;   :commands (tabspaces-switch-or-create-workspace
+;;              tabspaces-open-or-create-project-and-workspace)
+;;   :custom
+;;   (tabspaces-use-filtered-buffers-as-default t)
+;;   (tabspaces-default-tab "Default")
+;;   (tabspaces-remove-to-default t)
+;;   (tabspaces-include-buffers '("*scratch*"))
+;;   ;; sessions
+;;   (tabspaces-session t)
+;;   (tabspaces-session-auto-restore t))
 
 
 ;; Quarto mode
