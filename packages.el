@@ -61,6 +61,6 @@
 (package! quarto-mode)
 (package! sis)
 (package! evil-escape)
-;; (package! tabspaces :disable t)
-(package! tab-bar-echo-area)
+(package! tabspaces)
+(package! tab-bar-echo-area :disable t)
 ;; (package! pangu-spacing :disable t) ; Turn off auto spacing between Chinese and English

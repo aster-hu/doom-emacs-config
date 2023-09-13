@@ -687,8 +687,18 @@ charset
 ;; Set jk as the escape key
 (setq-default evil-escape-key-sequence "jk")
 
-;; Tab bar in echo area at the bottom
-(use-package! tab-bar-echo-area
-  :ensure
-  :config
-  (tab-bar-echo-area-mode 1))
+(use-package! tabspaces
+  ;; use this next line only if you also use straight, otherwise ignore it. 
+  ;; :straight (:type git :host github :repo "mclear-tools/tabspaces")
+  :hook (after-init . tabspaces-mode) ;; use this only if you want the minor-mode loaded at startup. 
+  :commands (tabspaces-switch-or-create-workspace
+             tabspaces-open-or-create-project-and-workspace)
+  :custom
+  (tabspaces-use-filtered-buffers-as-default t)
+  (tabspaces-default-tab "Default")
+  (tabspaces-remove-to-default t)
+  (tabspaces-include-buffers '("*scratch*"))
+  ;; sessions
+  (tabspaces-session t)
+  (tabspaces-session-auto-restore t))
+  
