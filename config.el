@@ -110,6 +110,10 @@ charset
 ;;  STYLE
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Set up TODO keywords globally
+(after! org
+(setq org-todo-keywords
+   (quote ((sequence "NEXT(n)" "LATER(l)" "WAIT(w)" "|" "DONE(d)" "CANCEL(c@/@)"))))
 (setq org-todo-keyword-faces
       (quote (;; 
 	      ("NEXT" :foreground "#E8A0BF" :weight bold)
@@ -121,6 +125,7 @@ charset
               ("MISS" :foreground "#ffe599" :weight bold)
               ("CANCEL" :foreground "#7C9D96" :weight bold)
               )))
+)
 
 ;; ;; Alternative highlight TODO keywords style for both dark and light themes
 ;; (setq org-todo-keyword-faces
