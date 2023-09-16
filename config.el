@@ -705,20 +705,20 @@ charset
 ;; Set jk as the escape key
 (setq-default evil-escape-key-sequence "jk")
 
-(use-package! tabspaces
-  ;; use this next line only if you also use straight, otherwise ignore it. 
-  ;; :straight (:type git :host github :repo "mclear-tools/tabspaces")
-  :hook (after-init . tabspaces-mode) ;; use this only if you want the minor-mode loaded at startup. 
-  :commands (tabspaces-switch-or-create-workspace
-             tabspaces-open-or-create-project-and-workspace)
-  :custom
-  (tabspaces-use-filtered-buffers-as-default t)
-  (tabspaces-default-tab "Default")
-  (tabspaces-remove-to-default t)
-  (tabspaces-include-buffers '("*scratch*"))
-  ;; sessions
-  (tabspaces-session t)
-  (tabspaces-session-auto-restore t))
+;; (use-package! tabspaces
+;;   ;; use this next line only if you also use straight, otherwise ignore it. 
+;;   ;; :straight (:type git :host github :repo "mclear-tools/tabspaces")
+;;   :hook (after-init . tabspaces-mode) ;; use this only if you want the minor-mode loaded at startup. 
+;;   :commands (tabspaces-switch-or-create-workspace
+;;              tabspaces-open-or-create-project-and-workspace)
+;;   :custom
+;;   (tabspaces-use-filtered-buffers-as-default t)
+;;   (tabspaces-default-tab "Default")
+;;   (tabspaces-remove-to-default t)
+;;   (tabspaces-include-buffers '("*scratch*"))
+;;   ;; sessions
+;;   (tabspaces-session t)
+;;   (tabspaces-session-auto-restore t))
 
 
 ;; Quarto mode
@@ -733,4 +733,11 @@ charset
 ;; (setq org-element-use-cache nil)
 
 ;; Perspective
-(use-package! perspective)
+;; (use-package! perspective
+;;   :init
+;;   (persp-mode)
+;;   :bind(
+;;          ("C-x x s" . persp-switch)
+;;          ("C-x b" . persp-switch-to-buffer*)
+;;          ("C-x k" . persp-kill-buffer*)
+;;   ))
