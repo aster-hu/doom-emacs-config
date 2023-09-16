@@ -25,13 +25,14 @@
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 ;; (setq org-directory "~/org/")
+
 (setq org-directory "~/Library/CloudStorage/Dropbox/Code/000_Org-mode")
 
 ;; (setq org-agenda-files (list "gtd.org"
 ;; 			                        "journal.org"))
 
 (setq projectile-project-search-path '("~/Library/CloudStorage/Dropbox/Code/"))
-
+  
 ;; (use-package! org
 ;;   :defer t)
 
@@ -65,6 +66,10 @@
 (set-fontset-font (frame-parameter nil 'font)
 charset
 (font-spec :family "Pingfang SC"))))
+
+;; Auto load org-mode for all .org files
+
+
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
@@ -156,7 +161,7 @@ charset
 
 ;; Change priority style via org-fancy-priorities
 (use-package! org-fancy-priorities
-  :ensure t
+  ;; :ensure t
   :config
   (setq org-fancy-priorities-list '("⬆" "⬌" "⬇" "☕"))
   (add-hook 'org-mode-hook 'org-fancy-priorities-mode))
@@ -194,7 +199,7 @@ charset
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package! org-capture
-  :ensure t
+  ;; :ensure t
   :bind (("C-c c" . org-capture))
   :config
   (setq org-capture-templates
@@ -332,29 +337,31 @@ charset
 
 ;; SHOW AGENDA AT STARTUP SCREEN
 
+;; Add org-mode to major mode
+;; (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+
 (after! org-agenda
   (let ((inhibit-message t))
     (org-super-agenda-mode)))
     
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
-(setq initial-buffer-choice (concat org-directory "/gtd.org"))  
-
-;; (defun my-init-hook ()
-;;   (split-window-right)
-;;   (let ((org-agenda-window-setup 'other-window))
-;;     ;; (org-agenda nil "z")
-;;     (lambda () (org-agenda nil "z"))
-;;     ))
-(add-hook 'emacs-startup-hook #'my-init-hook)
-(add-hook 'emacs-startup-hook (lambda () (org-agenda nil "z")))
+;; (setq initial-buffer-choice (concat org-directory "/gtd.org"))  
 
 (defun my-init-hook ()
   (split-window-right)
-  (let ((org-agenda-window-setup 'current-window))
+  (let ((org-agenda-window-setup 'other-window))
+    ;; (org-agenda nil "z")
+    (lambda () (org-agenda nil "z"))
     ))
 
+(add-hook 'emacs-startup-hook #'my-init-hook)
 
+;; (add-hook 'emacs-startup-hook (lambda () (org-agenda nil "z")))
 
+;; (defun my-init-hook ()
+;;   (split-window-right)
+;;   (let ((org-agenda-window-setup 'current-window))
+;;     ))
 
 ;; (add-hook 'window-setup-hook (lambda () (org-agenda nil "z")))
 
