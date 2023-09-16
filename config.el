@@ -170,7 +170,7 @@ charset
 (map! "C-u C-u TAB" #'org-set-startup-visibility)
 (map! "C-c i d" #'org-id-copy)
 (map! "C-x x s" #'persp-switch)
-(map! "C-x k" #'persp-kill-buffer*)
+(map! "C-x k" #'persp-kill-buffer)
 
 ;; Strikethrough the DONE items and set fonts
 ;;(setq org-fontify-done-headline t)
@@ -755,3 +755,6 @@ charset
 
 ;; Display perspective name
 (setq doom-modeline-persp-name t)
+
+;; Disable writegood mode
+(setq writegood-mode nil)
