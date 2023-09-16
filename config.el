@@ -21,15 +21,19 @@
 ;; accept. For example:
 ;;
 
-(setq doom-font (font-spec :family "Hack" :size 20 :weight 'semi-light)
-     doom-variable-pitch-font (font-spec :family "DejaVu Sans Mono" :size 20 :weight 'normal :width 'normal))
 
-;; ;; ;;Chinese Font
-(after! org
-(dolist (charset '(kana han symbol cjk-misc bopomofo))
-(set-fontset-font (frame-parameter nil 'font)
-charset
-(font-spec :family "Pingfang SC"))))
+;; If you use `org' and don't want your org files in the default location below,
+;; change `org-directory'. It must be set before org loads!
+;; (setq org-directory "~/org/")
+(setq org-directory "~/Library/CloudStorage/Dropbox/Code/000_Org-mode")
+
+;; (setq org-agenda-files (list "gtd.org"
+;; 			                        "journal.org"))
+
+(setq projectile-project-search-path '("~/Library/CloudStorage/Dropbox/Code/"))
+
+;; (use-package! org
+;;   :defer t)
 
 ;; Set line spacing globally
 (setq-default line-spacing 10)
@@ -52,18 +56,15 @@ charset
 (setq display-line-numbers-type t)
 (setq org-roam-ui-mode nil)
 
-;; If you use `org' and don't want your org files in the default location below,
-;; change `org-directory'. It must be set before org loads!
-;; (setq org-directory "~/org/")
-(setq org-directory "~/Library/CloudStorage/Dropbox/Code/000_Org-mode")
+(setq doom-font (font-spec :family "Hack" :size 20 :weight 'semi-light)
+     doom-variable-pitch-font (font-spec :family "DejaVu Sans Mono" :size 20 :weight 'normal :width 'normal))
 
-;; (setq org-agenda-files (list "gtd.org"
-;; 			                        "journal.org"))
-
-(setq projectile-project-search-path '("~/Library/CloudStorage/Dropbox/Code/"))
-
-(use-package! org
-  :defer t)
+;; ;; ;;Chinese Font
+(after! org
+(dolist (charset '(kana han symbol cjk-misc bopomofo))
+(set-fontset-font (frame-parameter nil 'font)
+charset
+(font-spec :family "Pingfang SC"))))
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
@@ -722,4 +723,4 @@ charset
 ;; (add-hook 'org-mode-hook 'org-fragtog-mode)
 
 ;; Disable cache to fix the warning error when previewing latex fragment
-(setq org-element-use-cache nil)
+;; (setq org-element-use-cache nil)
