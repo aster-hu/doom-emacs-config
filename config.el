@@ -161,6 +161,7 @@ charset
   (add-hook 'org-mode-hook 'org-fancy-priorities-mode))
 
 (map! "C-u C-u TAB" #'org-set-startup-visibility)
+(map! "C-c i d" #'org-id-copy)
 
 ;; Strikethrough the DONE items and set fonts
 ;;(setq org-fontify-done-headline t)
