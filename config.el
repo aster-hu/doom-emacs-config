@@ -717,3 +717,9 @@ charset
 (use-package! quarto-mode
   :mode (("\\.Rmd" . poly-quarto-mode))
   )
+
+;; ;; Latex inline preview
+;; (add-hook 'org-mode-hook 'org-fragtog-mode)
+
+;; Disable cache to fix the warning error when previewing latex fragment
+(setq org-element-use-cache nil)
