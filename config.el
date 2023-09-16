@@ -166,8 +166,11 @@ charset
   (setq org-fancy-priorities-list '("⬆" "⬌" "⬇" "☕"))
   (add-hook 'org-mode-hook 'org-fancy-priorities-mode))
 
+;; Key bindings
 (map! "C-u C-u TAB" #'org-set-startup-visibility)
 (map! "C-c i d" #'org-id-copy)
+(map! "C-x x s" #'persp-switch)
+(map! "C-x k" #'persp-kill-buffer*)
 
 ;; Strikethrough the DONE items and set fonts
 ;;(setq org-fontify-done-headline t)
@@ -747,16 +750,8 @@ charset
 ;; Sample jar configuration
 (setq plantuml-jar-path "/Users/aster/.doom.d/plantuml.jar")
 (setq plantuml-default-exec-mode 'jar)
-
-;; (setq plantuml-jar-args '("-tpng"))
-;; (setq plantuml-output-type "png")
-;; (setq plantuml-java-args (list "-Djava.awt.headless=true" "-jar"))
-;; (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
-
 (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
 (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
 
-;; (org-babel-do-load-languages
-;;  'org-babel-load-languages
-;;  '((plantuml . t))) ; this line activates plantuml
- 
+;; Display perspective name
+(setq doom-modeline-persp-name t)
