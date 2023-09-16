@@ -729,8 +729,8 @@ charset
 ;; ;; Latex inline preview
 ;; (add-hook 'org-mode-hook 'org-fragtog-mode)
 
-;; Disable cache to fix the warning error when previewing latex fragment
-;; (setq org-element-use-cache nil)
+;;Disable cache to fix the warning error when previewing latex fragment
+(setq org-element-use-cache nil)
 
 ;; Perspective
 ;; (use-package! perspective
