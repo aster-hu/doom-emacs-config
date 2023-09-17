@@ -456,20 +456,26 @@ charset
         :unnarrowed t
           :empty-lines-after 1)
         ("m" "Main" plain
-         "\n*Metadata*\n- Link: %?\n- Resource: \n\n"
+         "\n*Metadata*\n- Link:  %?\n- Resource: \n\n"
          :if-new (file+head "1-main/${slug}.org" "#+title: ${title}\n#+filetags: :1-main:\n")
          :immediate-finish t
          :unnarrowed t
          :empty-lines-after 1)
         ("r" "Reference" plain
-        "\n*Metadata*\n- Link: %?\n- Resource: \n\n"
+        "\n*Metadata*\n- Link:  %?\n- Resource: \n\n"
          :if-new
-         (file+head "2-resource/${slug}.org" "#+title: ${title}\n#+filetags: :2-ref:\n")
+         (file+head "1-main/${slug}.org" "#+title: ${title}\n#+filetags: :2-ref:\n")
          :immediate-finish t
          :unnarrowed t
          :empty-lines-after 1)
+        ("o" "moc" plain
+         "\n*Metadata*\n- Link:  %?\n- Resource: \n\n"
+         :if-new (file+head "1-main/${slug}.org" "#+title: ${title}\n#+filetags: :moc:\n")
+         :immediate-finish t
+         :unnarrowed t
+         :empty-lines-after 1) 
         ("a" "Article" plain
-        "\n*Metadata*\n- Link: %?\n- Resource: \n\n"
+        "\n*Metadata*\n- Link:  %?\n- Resource: \n\n"
          :if-new
          (file+head "3-article/${slug}.org" "#+title: ${title}\n#+filetags: :3-article:\n")
          :immediate-finish t
@@ -734,6 +740,7 @@ charset
 
 ;; ;; Latex inline preview
 ;; (add-hook 'org-mode-hook 'org-fragtog-mode)
+(after! org (setq org-startup-with-latex-preview t))
 
 ;;Disable cache to fix the warning error when previewing latex fragment
 (setq org-element-use-cache nil)
