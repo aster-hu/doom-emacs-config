@@ -758,3 +758,6 @@ charset
 
 ;; Disable writegood mode
 (setq-default writegood-mode nil)
+
+;; Display inline images at startup
+(setq org-startup-with-inline-images t)
