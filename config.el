@@ -753,7 +753,7 @@ charset
 ;; Sample jar configuration
 (setq plantuml-jar-path "/Users/aster/.doom.d/plantuml.jar")
 (setq plantuml-default-exec-mode 'jar)
-(add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
+;; (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
 (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
 
 ;; Display perspective name
