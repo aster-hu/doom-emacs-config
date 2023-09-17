@@ -503,6 +503,9 @@ charset
 ;; (add-to-list 'load-path "~/.emacs.d/plugins")
 ;; (load "org-roam-backlink-collections.el")
 
+;; Function to ensure blank lines between headings and before contents
+(add-to-list 'load-path "~/.doom.d/plugins")
+(load "org-fix-blank-lines.el")
 
 ;; Define function to exclude files in archive nodes
 ;; https://www.reddit.com/r/emacs/comments/veesun/orgroam_is_absolutely_fantastic/
