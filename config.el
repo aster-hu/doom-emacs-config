@@ -757,4 +757,4 @@ charset
 (setq doom-modeline-persp-name t)
 
 ;; Disable writegood mode
-(setq writegood-mode nil)
+(setq-default writegood-mode nil)
