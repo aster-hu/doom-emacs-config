@@ -11,7 +11,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-comment ((t (:background "#3d4451" :foreground "#CBACBA"))))
  '(fixed-pitch ((t nil)))
  '(holiday ((t (:foreground "chartreuse"))))
  '(mode-line ((t nil)))
