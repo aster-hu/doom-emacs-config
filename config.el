@@ -57,15 +57,22 @@
 (setq display-line-numbers-type t)
 (setq org-roam-ui-mode nil)
 
-(setq doom-font (font-spec :family "Hack" :size 20 :weight 'semi-light)
-     doom-variable-pitch-font (font-spec :family "DejaVu Sans Mono" :size 20 :weight 'normal :width 'normal))
+(setq doom-font (font-spec :family "Hack" :size 20 :weight 'semi-light))
+    ;;  doom-variable-pitch-font (font-spec :family "DejaVu Sans Mono" :size 20 :weight 'normal :width 'normal))
 
 ;; ;; ;;Chinese Font
-(after! org
-(dolist (charset '(kana han symbol cjk-misc bopomofo))
-(set-fontset-font (frame-parameter nil 'font)
-charset
-(font-spec :family "Pingfang SC"))))
+;; (after! org
+;; (dolist (charset '(kana han symbol cjk-misc bopomofo))
+;; (set-fontset-font (frame-parameter nil 'font)
+;; charset
+;; (font-spec :family "Pingfang SC"))))
+
+;; https://emacs-china.org/t/doom-emacs/23513/9
+(defun my-cjk-font()
+  (dolist (charset '(kana han cjk-misc symbol bopomofo))
+    (set-fontset-font t charset (font-spec :family "Sarasa Term SC Nerd"))))
+
+(add-hook 'after-setting-font-hook #'my-cjk-font)
 
 ;; Auto load org-mode for all .org files
 
