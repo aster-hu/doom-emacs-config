@@ -771,3 +771,10 @@ charset
 
 ;; Display inline images at startup
 (setq org-startup-with-inline-images t)
+
+;; Org-noter
+(with-eval-after-load 'org-noter
+  (define-key org-noter-doc-mode-map (kbd "i")   'org-noter-insert-precise-note)
+  (define-key org-noter-doc-mode-map (kbd "C-i") 'org-noter-insert-note)
+  (define-key org-noter-doc-mode-map (kbd "I")   'org-noter-insert-precise-note-toggle-no-questions)
+  (define-key org-noter-doc-mode-map (kbd "M-i") 'org-noter-insert-note-toggle-no-questions))
