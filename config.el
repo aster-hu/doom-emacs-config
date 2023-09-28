@@ -291,7 +291,7 @@
                        '((:name "====================================================================================="
                           :time-grid t
                           :date today
-                          :todo "NEXT"
+                          ;; :todo "NEXT"
                           :scheduled today
                           :order 1)
 			 (:name "Meeting"
