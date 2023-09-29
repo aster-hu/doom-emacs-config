@@ -7,6 +7,8 @@
 !plugins/*
 !.gitignore
 !*.el
+!snippets/
+!*.jar
 
 # Ignore system-generated files and images #
 .DS_Store
