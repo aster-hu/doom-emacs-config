@@ -3,7 +3,7 @@
 # key: oxhugo-file
 # --
 
-#+hugo_base_dir: /Users/aster/quartz/
+#+hugo_base_dir: /Users/aster/Library/CloudStorage/Dropbox/Code/quartz/
 #+hugo_section: notes
 #+hugo_front_matter_format: yaml
 #+hugo_auto_set_lastmod: t
