@@ -464,20 +464,20 @@
           :empty-lines-after 1)
         ("m" "Main" plain
          "\n*Link*:  %?\n\n"
-         :if-new (file+head "1-main/${slug}.org" "#+title: ${title}\n#+filetags: :1-main:\n#+hugo_base_dir: /Users/aster/Library/CloudStorage/Dropbox/Code/quartz/\n#+hugo_section: notes\n#+hugo_front_matter_format: yaml\n#+date: %U\n#+hugo_lastmod: %U\n#+hugo_draft: true\n")
+         :if-new (file+head "1-main/${slug}.org" "#+title: ${title}\n#+filetags: :1-main:\n#+hugo_base_dir: /Users/aster/Library/CloudStorage/Dropbox/Code/quartz/\n#+hugo_section: notes\n#+hugo_front_matter_format: yaml\n#+date: %u\n#+hugo_lastmod: %u\n#+hugo_draft: true\n")
          :immediate-finish t
          :unnarrowed t
          :empty-lines-after 1)
         ("r" "Reference" plain
         "\n*Link*:  %?\n\n"
          :if-new
-         (file+head "1-main/${slug}.org" "#+title: ${title}\n#+filetags: :2-ref:\n#+hugo_base_dir: /Users/aster/Library/CloudStorage/Dropbox/Code/quartz/\n#+hugo_section: notes\n#+hugo_front_matter_format: yaml\n#+date: %U\n#+hugo_lastmod: %U\n#+hugo_draft: true\n")
+         (file+head "1-main/${slug}.org" "#+title: ${title}\n#+filetags: :2-ref:\n#+hugo_base_dir: /Users/aster/Library/CloudStorage/Dropbox/Code/quartz/\n#+hugo_section: notes\n#+hugo_front_matter_format: yaml\n#+date: %u\n#+hugo_lastmod: %u\n#+hugo_draft: true\n")
          :immediate-finish t
          :unnarrowed t
          :empty-lines-after 1)
         ("o" "moc" plain
          "\n*Link*:  %?\n\n"
-         :if-new (file+head "1-main/${slug}.org" "#+title: ${title}\n#+filetags: :moc:\n#+hugo_base_dir: /Users/aster/Library/CloudStorage/Dropbox/Code/quartz/\n#+hugo_section: notes\n#+hugo_front_matter_format: yaml\n#+date: %U\n#+hugo_lastmod: %U\n#+hugo_draft: true\n")
+         :if-new (file+head "1-main/${slug}.org" "#+title: ${title}\n#+filetags: :moc:\n#+hugo_base_dir: /Users/aster/Library/CloudStorage/Dropbox/Code/quartz/\n#+hugo_section: notes\n#+hugo_front_matter_format: yaml\n#+date: %u\n#+hugo_lastmod: %u\n#+hugo_draft: true\n")
          :immediate-finish t
          :unnarrowed t
          :empty-lines-after 1) 
@@ -785,18 +785,11 @@
       "C-S-i" #'org-noter-insert-note
 )
 
-;; Timestamp on save
-;; (setq time-stamp-active t
-;;       time-stamp-start "#\\+hugo_lastmod:[ \t]*"
-;;       time-stamp-end "$"
-;;       time-stamp-format "\[%04y-%02m-%02d %3a %02H:%02M\]")
-;; (add-hook 'before-save-hook 'time-stamp nil)
-
 (setq time-stamp-line-limit 30)
 
 (after! org
   (setq time-stamp-active t
     time-stamp-start "#\\+hugo_lastmod:[ \t]*"
     time-stamp-end "$"
-    time-stamp-format "\[%Y-%m-%d %a %H:%M\]")
+    time-stamp-format "\[%Y-%m-%d\]")
 (add-hook 'before-save-hook 'time-stamp))
