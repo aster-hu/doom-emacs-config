@@ -6,6 +6,6 @@
 #+hugo_base_dir: /Users/aster/Library/CloudStorage/Dropbox/Code/quartz/
 #+hugo_section: notes
 #+hugo_front_matter_format: yaml
-#+hugo_auto_set_lastmod: t
+
 #+author: nil
 #+hugo_draft: false
