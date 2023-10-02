@@ -7,3 +7,5 @@
 #+hugo_section: notes
 #+hugo_front_matter_format: yaml
 #+hugo_draft: false
+#+date: [`(format-time-string "%Y-%m-%d")`$0]
+#+hugo_lastmod: [2023-10-01 Sun 22:12]
