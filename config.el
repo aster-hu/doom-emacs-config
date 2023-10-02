@@ -784,3 +784,10 @@
       :map org-noter-doc-mode-map
       "C-S-i" #'org-noter-insert-note
 )
+
+;; Timestamp on save
+(setq time-stamp-active t
+      time-stamp-start "#\\+HUGO_LASTMOD:[ \t]*"
+      time-stamp-end "$"
+      time-stamp-format "\[%04y-%02m-%02d %3a %02H:%02M\]")
+(add-hook 'before-save-hook 'time-stamp nil)
