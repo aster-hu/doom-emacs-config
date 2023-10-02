@@ -463,26 +463,26 @@
         :unnarrowed t
           :empty-lines-after 1)
         ("m" "Main" plain
-         "\n*Metadata*\n- Link:  %?\n- Resource: \n\n"
-         :if-new (file+head "1-main/${slug}.org" "#+title: ${title}\n#+filetags: :1-main:\n")
+         "\n*Link*:  %?\n\n"
+         :if-new (file+head "1-main/${slug}.org" "#+title: ${title}\n#+filetags: :1-main:\n#+hugo_base_dir: /Users/aster/Library/CloudStorage/Dropbox/Code/quartz/\n#+hugo_section: notes\n#+hugo_front_matter_format: yaml\n#+date: %U\n#+hugo_lastmod: %U\n#+hugo_draft: true\n")
          :immediate-finish t
          :unnarrowed t
          :empty-lines-after 1)
         ("r" "Reference" plain
-        "\n*Metadata*\n- Link:  %?\n- Resource: \n\n"
+        "\n*Link*:  %?\n\n"
          :if-new
-         (file+head "1-main/${slug}.org" "#+title: ${title}\n#+filetags: :2-ref:\n")
+         (file+head "1-main/${slug}.org" "#+title: ${title}\n#+filetags: :2-ref:\n#+hugo_base_dir: /Users/aster/Library/CloudStorage/Dropbox/Code/quartz/\n#+hugo_section: notes\n#+hugo_front_matter_format: yaml\n#+date: %U\n#+hugo_lastmod: %U\n#+hugo_draft: true\n")
          :immediate-finish t
          :unnarrowed t
          :empty-lines-after 1)
         ("o" "moc" plain
-         "\n*Metadata*\n- Link:  %?\n- Resource: \n\n"
-         :if-new (file+head "1-main/${slug}.org" "#+title: ${title}\n#+filetags: :moc:\n")
+         "\n*Link*:  %?\n\n"
+         :if-new (file+head "1-main/${slug}.org" "#+title: ${title}\n#+filetags: :moc:\n#+hugo_base_dir: /Users/aster/Library/CloudStorage/Dropbox/Code/quartz/\n#+hugo_section: notes\n#+hugo_front_matter_format: yaml\n#+date: %U\n#+hugo_lastmod: %U\n#+hugo_draft: true\n")
          :immediate-finish t
          :unnarrowed t
          :empty-lines-after 1) 
         ("a" "Article" plain
-        "\n*Metadata*\n- Link:  %?\n- Resource: \n\n"
+        "\n*Link*:  %?\n\n"
          :if-new
          (file+head "3-article/${slug}.org" "#+title: ${title}\n#+filetags: :3-article:\n")
          :immediate-finish t
@@ -786,8 +786,17 @@
 )
 
 ;; Timestamp on save
-(setq time-stamp-active t
-      time-stamp-start "#\\+HUGO_LASTMOD:[ \t]*"
-      time-stamp-end "$"
-      time-stamp-format "\[%04y-%02m-%02d %3a %02H:%02M\]")
-(add-hook 'before-save-hook 'time-stamp nil)
+;; (setq time-stamp-active t
+;;       time-stamp-start "#\\+hugo_lastmod:[ \t]*"
+;;       time-stamp-end "$"
+;;       time-stamp-format "\[%04y-%02m-%02d %3a %02H:%02M\]")
+;; (add-hook 'before-save-hook 'time-stamp nil)
+
+(setq time-stamp-line-limit 30)
+
+(after! org
+  (setq time-stamp-active t
+    time-stamp-start "#\\+hugo_lastmod:[ \t]*"
+    time-stamp-end "$"
+    time-stamp-format "\[%Y-%m-%d %a %H:%M\]")
+(add-hook 'before-save-hook 'time-stamp))
