@@ -40,7 +40,7 @@
 (setq-default line-spacing 10)
 
 ;; Hide emphasis markers
-(setq org-hide-emphasis-markers t)
+(setq org-hide-emphasis-markers nil)
 
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
