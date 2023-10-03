@@ -5,5 +5,5 @@
 
 #+attr_html: :data-callout note
 #+begin_callout
-%?
+`%`$0
 #+end_callout
