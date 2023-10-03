@@ -801,7 +801,9 @@
 (defun org-bold-highlight ()
   (interactive)
   (hi-lock-mode)
-  (highlight-regexp "[ \\t]\\(\\*\\(\\S-[^*]+\\S-\\|[^*]\\{1,2\\}\\)\\*\\)[ \\t\\n]*" 'hi-yl-b)
-  (highlight-regexp "[ \\t]\\(\\/\\(\\S-[^/]+\\S-\\|[^/]\\{1,2\\}\\)\\/\\)[ \\t\\n]*" 'hi-green-b))
+  (highlight-regexp "[ \\t]\\(\\*\\(\\S-[^*]+\\S-\\|[^*]\\{1,2\\}\\)\\*\\)[ \\t\\n]*" 'hi-yl-b))
 
 (add-hook 'org-mode-hook 'org-bold-highlight)
+
+;; Set ox-hugo export heading levels
+(setq org-export-headline-levels 6)
