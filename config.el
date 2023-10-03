@@ -793,3 +793,15 @@
     time-stamp-end "$"
     time-stamp-format "\[%Y-%m-%d\]")
 (add-hook 'before-save-hook 'time-stamp))
+
+;; Custom bold colour
+;; https://www.zhihu.com/question/28830039/answer/47043443
+(defface hi-yl-b '((t (:foreground "#fed141"))) t)
+
+(defun org-bold-highlight ()
+  (interactive)
+  (hi-lock-mode)
+  (highlight-regexp "[ \\t]\\(\\*\\(\\S-[^*]+\\S-\\|[^*]\\{1,2\\}\\)\\*\\)[ \\t\\n]*" 'hi-yl-b)
+  (highlight-regexp "[ \\t]\\(\\/\\(\\S-[^/]+\\S-\\|[^/]\\{1,2\\}\\)\\/\\)[ \\t\\n]*" 'hi-green-b))
+
+(add-hook 'org-mode-hook 'org-bold-highlight)
