@@ -519,11 +519,6 @@
 ;; Function to ensure blank lines between headings and before contents
 (add-to-list 'load-path "~/.doom.d/plugins")
 (load "org-fix-blank-lines.el")
-(load "org-extra-emphasis.el")
-
-;; org-extra-emphasis custom highlight
-(setq org-extra-emphasis-alist '(("==" org-extra-emphasis-01) ("!@" org-extra-emphasis-02) ("!%" org-extra-emphasis-03) ("!&" org-extra-emphasis-04) ("@!" org-extra-emphasis-05) ("@@" org-extra-emphasis-06) ("@%" org-extra-emphasis-07) ("@&" org-extra-emphasis-08) ("%!" org-extra-emphasis-09) ("%@" org-extra-emphasis-10) ("%%" org-extra-emphasis-11) ("%&" org-extra-emphasis-12) ("&!" org-extra-emphasis-13) ("&@" org-extra-emphasis-14) ("&%" org-extra-emphasis-15) ("&&" org-extra-emphasis-16)))
-
 
 ;; Define function to exclude files in archive nodes
 ;; https://www.reddit.com/r/emacs/comments/veesun/orgroam_is_absolutely_fantastic/
