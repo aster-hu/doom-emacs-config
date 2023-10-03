@@ -464,33 +464,33 @@
           :empty-lines-after 1)
         ("m" "Main" plain
          "\n*Link*:  %?\n\n"
-         :if-new (file+head "1-main/${slug}.org" "#+title: ${title}\n#+filetags: :1-main:\n#+hugo_base_dir: /Users/aster/Library/CloudStorage/Dropbox/Code/quartz/\n#+hugo_section: notes\n#+hugo_front_matter_format: yaml\n#+date: %u\n#+hugo_lastmod: %u\n#+hugo_draft: true\n")
+         :if-new (file+head "1-main/${slug}.org" "${title}\n#+filetags: :1-main:\n#+hugo_base_dir: /Users/aster/Library/CloudStorage/Dropbox/Code/quartz/\n#+hugo_section: notes\n#+hugo_front_matter_format: yaml\n#+date: %u\n#+hugo_lastmod: %u\n#+hugo_draft: true\n")
          :immediate-finish t
          :unnarrowed t
          :empty-lines-after 1)
         ("r" "Reference" plain
         "\n*Link*:  %?\n\n"
          :if-new
-         (file+head "1-main/${slug}.org" "#+title: ${title}\n#+filetags: :2-ref:\n#+hugo_base_dir: /Users/aster/Library/CloudStorage/Dropbox/Code/quartz/\n#+hugo_section: notes\n#+hugo_front_matter_format: yaml\n#+date: %u\n#+hugo_lastmod: %u\n#+hugo_draft: true\n")
+         (file+head "1-main/${slug}.org" "${title}\n#+filetags: :2-ref:\n#+hugo_base_dir: /Users/aster/Library/CloudStorage/Dropbox/Code/quartz/\n#+hugo_section: notes\n#+hugo_front_matter_format: yaml\n#+date: %u\n#+hugo_lastmod: %u\n#+hugo_draft: true\n")
          :immediate-finish t
          :unnarrowed t
          :empty-lines-after 1)
         ("o" "moc" plain
          "\n*Link*:  %?\n\n"
-         :if-new (file+head "1-main/${slug}.org" "#+title: ${title}\n#+filetags: :moc:\n#+hugo_base_dir: /Users/aster/Library/CloudStorage/Dropbox/Code/quartz/\n#+hugo_section: notes\n#+hugo_front_matter_format: yaml\n#+date: %u\n#+hugo_lastmod: %u\n#+hugo_draft: true\n")
+         :if-new (file+head "1-main/${slug}.org" "${title}\n#+filetags: :moc:\n#+hugo_base_dir: /Users/aster/Library/CloudStorage/Dropbox/Code/quartz/\n#+hugo_section: notes\n#+hugo_front_matter_format: yaml\n#+date: %u\n#+hugo_lastmod: %u\n#+hugo_draft: true\n")
          :immediate-finish t
          :unnarrowed t
          :empty-lines-after 1) 
         ("a" "Article" plain
         "\n*Link*:  %?\n\n"
          :if-new
-         (file+head "3-article/${slug}.org" "#+title: ${title}\n#+filetags: :3-article:\n")
+         (file+head "3-article/${slug}.org" "${title}\n#+filetags: :3-article:\n")
          :immediate-finish t
          :unnarrowed t
          :empty-lines-after 1)
          ("e" "Review" plain "%?"
          :if-new
-         (file+head "4-review/${slug}.org" "#+title: ${title}\n#+filetags: :4-review:\n\n\n")
+         (file+head "4-review/${slug}.org" "${title}\n#+filetags: :4-review:\n\n\n")
          :immediate-finish t
          :unnarrowed t
          :empty-lines-after 1)
