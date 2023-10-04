@@ -807,3 +807,6 @@
 
 ;; Set ox-hugo export heading levels
 (setq org-export-headline-levels 6)
+
+;; ox-hugo
+(setq org-hugo-default-static-subdirectory-for-externals "/Users/aster/Library/CloudStorage/Dropbox/Code/quartz/content/img")
