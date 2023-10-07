@@ -775,6 +775,8 @@
 
 ;; Disable writegood mode
 (setq-default writegood-mode nil)
+(remove-hook 'text-mode-hook #'writegood-mode)
+(remove-hook 'org-mode-hook #'writegood-mode)
 
 ;; Display inline images at startup
 (setq org-startup-with-inline-images t)
