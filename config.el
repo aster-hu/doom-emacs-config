@@ -750,7 +750,7 @@
 ;; (after! org (setq org-startup-with-latex-preview t))
 
 ;;Disable cache to fix the warning error when previewing latex fragment
-;; (setq org-element-use-cache nil)
+(setq org-element-use-cache nil)
 
 ;; Perspective
 ;; (use-package! perspective
