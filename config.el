@@ -768,8 +768,11 @@
 (setq plantuml-jar-path "/Users/aster/.doom.d/plantuml.jar")
 (setq plantuml-default-exec-mode 'jar)
 ;; (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
-(org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
-
+;;(org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
+(org-babel-do-load-languages 'org-babel-load-languages
+                             (append org-babel-load-languages
+                              '((python     . t)
+                                (r       . t))))
 ;; Display perspective name
 (setq doom-modeline-persp-name t)
 
