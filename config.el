@@ -241,7 +241,12 @@
           (file "templates/tpl-q-review.org")) 
 	 ("ra" "Annual review" entry 
           (file buffer-name)
-          (file "templates/tpl-a-review.org"))            
+          (file "templates/tpl-a-review.org"))
+         ("t" "Tarot" entry
+          (file "roam/tarot.org")
+          (file "templates/tpl-tarot.org")
+          :prepend t
+          :empty-lines-after 1)
 	 )))
 
 
@@ -812,3 +817,11 @@
 
 ;; Set ox-hugo export heading levels
 (setq org-export-headline-levels 6)
+
+;; random notes
+(use-package! org-randomnote
+  :ensure t
+  :bind ("C-c r" . org-randomnote))
+(load-library "find-lisp")
+(setq org-randomnote-candidates
+      (find-lisp-find-files "~/Library/CloudStorage/Dropbox/Code/000_Org-mode/roam" "\.org$"))

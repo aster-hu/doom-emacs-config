@@ -67,3 +67,4 @@
 (package! ess-view-data :disable t)
 (package! org-fragtog :disable t)
 (package! org-ql)
+(package! org-randomnote)
