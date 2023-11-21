@@ -242,9 +242,15 @@
 	 ("ra" "Annual review" entry 
           (file buffer-name)
           (file "templates/tpl-a-review.org"))
-         ("t" "Tarot" entry
+         ("t" "Tarot")
+         ("ts" "Daily single" entry
           (file "roam/tarot.org")
-          (file "templates/tpl-tarot.org")
+          (file "templates/tpl-tarot-single-daily.org")
+          :prepend t
+          :empty-lines-after 1)
+         ("te" "Daily evolution" entry
+          (file "roam/tarot.org")
+          (file "templates/tpl-tarot-daily-evolution.org")
           :prepend t
           :empty-lines-after 1)
 	 )))
